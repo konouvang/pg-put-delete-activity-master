@@ -66,6 +66,17 @@ router.put('/:id',  (req, res) => {
 
 
   // YOUR CODE HERE
+  const queryString = `UPDATE "prime" SET "visited"=true WHERE id=$1;`;
+
+  pool.query(queryString, [id])
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log('Error updating :', err);
+            res.sendStatus(500);
+        });
+
 
 });
 
@@ -77,6 +88,16 @@ router.delete('/:id',  (req, res) => {
   console.log('Delete route called with id of', id);
 
   // YOUR CODE HERE
+
+  const queryString = `DELETE FROM "restaurants-test" WHERE id=$1;`;
+
+  pool.query(queryString, [id])
+      .then((response) => {
+          res.sendStatus(200);
+      })
+      .catch((err) => {
+          console.log('Error deleting: ', err);
+      });
 
 });
 
