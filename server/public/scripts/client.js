@@ -85,11 +85,11 @@ function refreshBooks() {
 function updateBook(bookToUpdate) {
 
   // YOUR AJAX CODE HERE
-  const booksId = $(this).data('id');
+  const bookId = $(this).data('id');
 
     $.ajax({
         type: 'PUT',
-        url: '/books/bought/'+ booksId
+        url: '/books/bought/'+ bookId
     }).then(function(response) {
         refreshBooks();
     });
@@ -102,6 +102,14 @@ function deleteBook(bookId) {
   // '/books/' + bookId
 
   // YOUR AJAX CODE HERE
+    console.log(bookId);
+
+    $.ajax({
+        type: 'DELETE',
+        url: '/books/' + bookId
+    }).then(function(response) {
+        refreshBooks(bookId);
+    });
 
 }
 
