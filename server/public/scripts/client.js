@@ -92,6 +92,7 @@ function updateBook(bookToUpdate) {
         url: '/books/bought/'+ bookId
     }).then(function(response) {
         refreshBooks();
+
     });
 }
 

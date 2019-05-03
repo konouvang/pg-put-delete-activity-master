@@ -89,7 +89,7 @@ router.delete('/:id',  (req, res) => {
 
   // YOUR CODE HERE
 
-  const queryString = `DELETE FROM "restaurants-test" WHERE id=$1;`;
+  const queryString = `DELETE FROM "books" WHERE id=$1;`;
 
   pool.query(queryString, [id])
       .then((response) => {
@@ -99,6 +99,19 @@ router.delete('/:id',  (req, res) => {
           console.log('Error deleting: ', err);
       });
 
+  router.delete('/books/:id', (req,res) => {
+      const queryString = `DELETE FROM "books" WHERE id=$1;`;
+    
+      pool.query(queryString, [req.params.id])
+          .then((response) => {
+                res.sendStatus(200);
+            })
+            .catch((err) => {
+                console.log('Error deleting: ', err);
+            });
+    });
 });
+
+
 
 module.exports = router;
