@@ -85,8 +85,16 @@ function refreshBooks() {
 function updateBook(bookToUpdate) {
 
   // YOUR AJAX CODE HERE
+  const booksId = $(this).data('id');
 
+    $.ajax({
+        type: 'PUT',
+        url: '/books/bought/'+ booksId
+    }).then(function(response) {
+        refreshBooks();
+    });
 }
+
 
 // DELETE
 function deleteBook(bookId) {
